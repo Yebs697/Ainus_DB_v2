@@ -1,0 +1,104 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "analysis": {
+        "analyzer": {
+          "keyword_analyzer": {
+            "type": "custom",
+            "tokenizer": "keyword",
+            "filter": ["lowercase"]
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "trend_id": {
+        "type": "keyword"
+      },
+      "keyword": {
+        "type": "keyword"
+      },
+      "search_date": {
+        "type": "date"
+      },
+      "interest_over_time": {
+        "type": "nested",
+        "properties": {
+          "date": {
+            "type": "date"
+          },
+          "value": {
+            "type": "integer"
+          },
+          "is_partial": {
+            "type": "boolean"
+          }
+        }
+      },
+      "interest_by_region": {
+        "type": "nested",
+        "properties": {
+          "region": {
+            "type": "keyword"
+          },
+          "value": {
+            "type": "integer"
+          }
+        }
+      },
+      "related_queries_top": {
+        "type": "nested",
+        "properties": {
+          "query": {
+            "type": "text",
+            "analyzer": "standard"
+          },
+          "value": {
+            "type": "integer"
+          }
+        }
+      },
+      "related_queries_rising": {
+        "type": "nested",
+        "properties": {
+          "query": {
+            "type": "text",
+            "analyzer": "standard"
+          },
+          "value": {
+            "type": "text"
+          }
+        }
+      },
+      "peak_interest": {
+        "type": "integer"
+      },
+      "average_interest": {
+        "type": "float"
+      },
+      "trend_direction": {
+        "type": "keyword"
+      },
+      "timeframe": {
+        "type": "keyword"
+      },
+      "geo": {
+        "type": "keyword"
+      },
+      "data_source": {
+        "type": "keyword",
+        "index": false
+      },
+      "indexed_at": {
+        "type": "date"
+      },
+      "created_at": {
+        "type": "date"
+      }
+    }
+  }
+}

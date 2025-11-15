@@ -1,0 +1,11 @@
+server.name: ainus_kibana
+server.host: "0.0.0.0"
+server.port: 5601
+
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+
+# 국제화 설정
+i18n.locale: "ko-KR"
+
+# 로깅
+logging.root.level: info

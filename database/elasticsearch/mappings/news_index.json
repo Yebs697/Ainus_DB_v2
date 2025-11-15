@@ -1,0 +1,97 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1,
+      "analysis": {
+        "analyzer": {
+          "korean_analyzer": {
+            "type": "custom",
+            "tokenizer": "nori_tokenizer",
+            "filter": ["lowercase", "nori_readingform", "nori_number"]
+          },
+          "korean_search_analyzer": {
+            "type": "custom",
+            "tokenizer": "nori_tokenizer",
+            "filter": ["lowercase", "nori_readingform"]
+          }
+        },
+        "tokenizer": {
+          "nori_tokenizer": {
+            "type": "nori_tokenizer",
+            "decompound_mode": "mixed"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "news_id": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "korean_analyzer",
+        "search_analyzer": "korean_search_analyzer",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "description": {
+        "type": "text",
+        "analyzer": "korean_analyzer",
+        "search_analyzer": "korean_search_analyzer"
+      },
+      "original_link": {
+        "type": "keyword"
+      },
+      "link": {
+        "type": "keyword"
+      },
+      "pub_date": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis||EEE, dd MMM yyyy HH:mm:ss Z"
+      },
+      "source": {
+        "type": "keyword"
+      },
+      "keywords": {
+        "type": "keyword"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "sentiment": {
+        "type": "keyword"
+      },
+      "sentiment_score": {
+        "type": "float"
+      },
+      "relevance_score": {
+        "type": "float"
+      },
+      "extracted_entities": {
+        "type": "nested",
+        "properties": {
+          "entity_type": {
+            "type": "keyword"
+          },
+          "entity_value": {
+            "type": "text",
+            "analyzer": "korean_analyzer"
+          }
+        }
+      },
+      "indexed_at": {
+        "type": "date"
+      },
+      "created_at": {
+        "type": "date"
+      }
+    }
+  }
+}

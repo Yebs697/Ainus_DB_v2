@@ -1,0 +1,19 @@
+cluster.name: ainus_cluster
+node.name: ainus_node
+
+# 네트워크 설정
+network.host: 0.0.0.0
+http.port: 9200
+
+# 노드 역할
+node.roles: [ master, data ]
+
+# 보안 비활성화 (개발 환경용)
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+
+# 메모리 잠금
+bootstrap.memory_lock: true
+
+# 디스커버리 설정 (단일 노드)
+discovery.type: single-node

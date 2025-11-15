@@ -1,0 +1,57 @@
+{
+  "name": "mproject14v2",
+  "version": "1.0.0",
+  "description": "AI 모델 정보 및 커뮤니티 플랫폼을 위한 데이터베이스 및 검색 인프라 구성",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "collect:test": "ts-node src/test/dataCollection.test.ts",
+    "collect:aa": "ts-node src/services/collectors/artificialAnalysis.collector.ts",
+    "collect:naver": "ts-node src/services/collectors/naver.collector.ts",
+    "collect:trends": "ts-node src/services/collectors/trends.collector.ts",
+    "db:init": "ts-node scripts/initDatabase.ts",
+    "pipeline:aa": "ts-node src/pipelines/artificialAnalysisPipeline.ts",
+    "pipeline:aa:recalculate": "ts-node src/pipelines/artificialAnalysisPipeline.ts recalculate",
+    "db:reset": "ts-node scripts/resetDatabase.ts",
+    "db:check": "ts-node scripts/checkDatabase.ts",
+    "db:check:tables": "ts-node scripts/checkDatabase.ts tables",
+    "db:check:count": "ts-node scripts/checkDatabase.ts count",
+    "db:check:models": "ts-node scripts/checkDatabase.ts models",
+    "db:check:top": "ts-node scripts/checkDatabase.ts top", 
+    "db:check:describe": "ts-node scripts/checkDatabase.ts describe",
+    "db:init:integrated": "ts-node scripts/initIntegratedDatabase.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^9.2.0",
+    "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.15.3",
+    "redis": "^5.9.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.10.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
